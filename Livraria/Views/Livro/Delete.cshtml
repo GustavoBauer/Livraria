@@ -1,0 +1,37 @@
+﻿@model Livraria.Models.Livro
+
+@{
+    Layout = "~/Views/Shared/_LayoutLivraria.cshtml";
+    ViewData["Title"] = "Exclusão";
+}
+
+<div class="bg-dark text-white text-center h5 p-2 mb-3">Confirmação de Exclusão de Livro</div>
+<div class="form-group">
+    <div class="row">
+        <label asp-for="LivroId" class="control-label col-2"></label>
+        <div class="col-2">@Html.DisplayFor(model => model.LivroId)</div>
+    </div>
+    <div class="row">
+        <label asp-for="Titulo" class="control-label col-2"></label>
+        <div class="col-10">@Html.DisplayFor(model => model.Titulo)</div>      
+    </div>
+    <div class="row">
+        <label asp-for="Preco" class="control-label col-2"></label>
+        <div class="col-2">@Html.DisplayFor(model => model.Preco)</div>
+    </div>
+    <div class="row">
+        <label asp-for="Disponivel" class="control-label col-2"></label>
+       <div class="col-2">@Html.DisplayFor(model => model.Disponivel)</div>
+    </div>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="LivroId" />
+    <div class="form-group text-center h3">
+        <input type="submit" value="Excluir" class="btn btn-info" />
+        <a asp-action="Index" class="btn btn-info">Voltar para a home</a>
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

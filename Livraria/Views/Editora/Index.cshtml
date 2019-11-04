@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Livraria.Models.Editora>
+@{
+    Layout = "~/Views/Shared/_LayoutLivraria.cshtml";
+    ViewData["Title"] = "Index";
+}
+@section Styles {
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.min.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" asp-fallback-href="~/lib/datatables/css/jquery.dataTables.min.css" />
+    </environment>
+}
+@if (@TempData["Nome"] != null)
+{
+    <div class="alert alert-success text-center p-1">
+        A editora <b>@TempData["Nome"]</b> foi excluída.
+    </div>
+}
+<div class="bg-dark text-white text-center h5 p-2">Editoras Cadastradas</div>
+
+<table id="tabela" class="table table-striped compact">
+    <thead>
+        <tr style="background-color:darkgrey" class="text-center p-0 m-0">
+            <th>
+                @Html.DisplayNameFor(model => model.EditoraId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Site)
+            </th>
+            <th>
+                @Html.DisplayName("Operações")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>
+                    @Html.DisplayFor(model => item.EditoraId)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Site)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EditoraId" class="btn btn-info pt-0 pb-0" style="font-size:14px">Alterar</a>
+                    <a asp-action="Delete" asp-route-id="@item.EditoraId" class="btn btn-info pt-0 pb-0" style="font-size:14px">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="text-center mt-3">
+    <a asp-action="Create" class="btn btn-info">Incluir Editora</a>
+</div>
+@section Scripts{
+    <environment include="Development">
+        <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"
+                asp-fallback-src="~/lib/datatables/js/jquery.dataTables.min.js">
+        </script>
+    </environment>
+    <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#tabela").DataTable({
+                        "pagingType": "simple_numbers",
+                        "language": {
+                            "paginate": { "previous": "Anterior", "next": "Próximo" },
+                            "search": "Pesquisa",
+                            "lengthMenu": "Mostrando _MENU_ registros",
+                            "info": "Mostrando de _START_ até _END_ (de _TOTAL_ registro(s) retornado(s))",
+                            "emptyTable": "Nenhum registro encontrado.",
+                            "infoEmpty": "Mostrando de 0 até 0 (de 0 registros)",
+                            "infoFiltered": " - Filtrando a partir de um total de _MAX_ registro(s).",
+                            "thousands": ".",
+                            "loadingRecords": "Carregando...",
+                            "processing": "Processando...",
+                            "zeroRecords": "Nenhum registro encontrado."
+                    },
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                    "pageLength": 10,
+                    "ordering": true
+                });
+                $(".dataTables_wrapper").css("font-size", "14px");
+                  });
+    </script>
+}

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_LayoutLivraria.cshtml";
+}
+
+<style>
+    .carousel {
+        max-width: 1000px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .carousel-inner img {
+        width: 100%;
+        height: 100%;
+    }
+    .carousel-indicators {
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 100%;
+        margin: auto 0;
+    }
+    .carousel-indicators li{
+        width: 10px;
+        height: 10px;
+    }
+</style>
+
+<div class="col-8 m-auto ">
+    <div id="demo" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000" data-pause="false">
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/images/livraria1.jpg" alt="Livraria1" />               
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/livraria2.jpg" alt="Livraria2" />
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/livraria3.jpg" alt="Livraria3" />
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    <span>Sistema para cadastro, listagem, alteração e exclusão de livros e editoras</span>
+</div>

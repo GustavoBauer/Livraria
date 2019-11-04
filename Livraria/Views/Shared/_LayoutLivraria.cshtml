@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Sistema Livraria - @ViewData["Title"]</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" 
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"              
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    </environment>
+
+    @RenderSection("Styles",required: false)
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-primary navbar-fixed-top pb-0">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white pt-0" asp-controller="Home">
+                <div class="row">
+                    <img src="~/images/cabecalho.png" width="35" height="35" alt="" />
+                    <h4>&nbsp;&nbsp;Sistema Livraria</h4>
+                </div>
+            </a>
+        </div>
+    </nav>
+    <partial name="_CookieConsentPartial" />
+    <div class="container-fluid" style="margin-top:20px;">
+        <div class="row">
+            <div class="col-2">
+                <nav style="margin-left:10px;">
+                    <a class="nav-item nav-link" asp-controller="Livro" asp-action="Index">
+                        <img src="~/images/livros.png" width="30" height="30" alt="" />
+                        Livros
+                    </a>
+                    <a class="nav-item nav-link" asp-controller="Editora" asp-action="Index">
+                        <img src="~/images/editoras.png" width="30" height="30" alt="" />
+                        Editoras
+                    </a>
+                </nav>
+            </div>
+            <div class="col-10">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <nav class="navbar fixed-bottom bg-dark text-white" style="background-color: #e5e5e5;">
+        <span class="small">Desenvolvido com ASP.NET Core MVC</span>
+    </nav>
+    <environment include="Development">
+        <script src="~/lib/jquery/jquery.min.js"></script>
+        <script src="~/lib/popper.js/umd/popper.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/jquery.min.js">
+        </script>
+        <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"
+                asp-fallback-src="~/lib/popper.js/umd/popper.min.js">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js">
+        </script>
+    </environment>
+    @RenderSection("Scripts",false)
+</body>
+</html>
